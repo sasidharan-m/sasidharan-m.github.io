@@ -15,12 +15,15 @@
           width: 100%;
           flex-wrap: wrap;
           justify-content: left;
+          gap: 10px;
+          padding: 10px;
         }
 
         .viewer-container {
           display: flex;
           flex-direction: column;
           align-items: center;
+          flex: 1 1 200px;
           /* height: 125px;  Remove fixed height */
           margin: 0;
           /* allow shrinking */
@@ -28,6 +31,8 @@
           /* optionally add min-height if needed */
           min-height: 125px;
           box-sizing: border-box;
+          min-width: 150px;
+          max-width: 300px;
         }
 
         .label {
