@@ -8,27 +8,40 @@
     <link rel="icon" href="./assets/icon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon.png">
     <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+        #viewers {
+          display: flex;
+          flex-direction: row;
+          width: max-content;
+        }
 
-    .video-wrapper {
-      max-width: 500px;
-      margin: 0;
-      width: 100%;
-      margin-left: 0;
-      margin-right: auto;
-    }
+        .viewer {
+          width: 125px;
+          height: 125px;
+          border: 1px solid #ccc;
+          flex: 1;
+        }
 
-    video {
-      width: 100%;
-      object-fit: contain;
-      border-radius: 8px;
-      margin: 0;
-      display: block;
-    }
+        body {
+          margin: 0;
+          padding: 20px;
+          box-sizing: border-box;
+        }
+
+        .video-wrapper {
+          max-width: 500px;
+          margin: 0;
+          width: 100%;
+          margin-left: 0;
+          margin-right: auto;
+        }
+
+        video {
+          width: 100%;
+          object-fit: contain;
+          border-radius: 8px;
+          margin: 0;
+          display: block;
+        }
   </style>
   </head>
   <body>
@@ -68,11 +81,62 @@
             <h4><a href="./assets/project_documentation/face-tracking.pdf">Face Tracking using Commodity Depth Cameras</a></h4>
             <div class="video-wrapper">
                 <video playsinline autoplay muted loop preload="auto">
+                    <source src="./assets/project_documentation/out.mp4" type="video/mp4">
                     <source src="./assets/project_documentation/out.mov" type="video/quicktime">
                 </video>
             </div>
             <p> Implemented a Generalized ICP algorithm with an initial SHOT3D feature based alignment and a drift correction update step to estimate the pose of the face using Intel D400 series depth cameras. This was my Master's final project at UC Santa Cruz. </p>
             <h4>A simple 3D Scanner using RGBD cameras</h4>
+            <div id="viewers">
+                <div id="viewer1" class="viewer"></div>
+                <div id="viewer2" class="viewer"></div>
+                <div id="viewer3" class="viewer"></div>
+                <div id="viewer4" class="viewer"></div>
+                <div id="viewer5" class="viewer"></div>
+            </div>
+            <script type="module">
+                import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
+                import { OrbitControls } from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js';
+                import { PCDLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/PCDLoader.js';
+
+                function createViewer(containerId, pcdPath) {
+                  const container = document.getElementById(containerId);
+                  const scene = new THREE.Scene();
+                  scene.background = new THREE.Color(0x111111);
+
+                  const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.01, 1000);
+                  camera.position.set(0, -0.5, -0.05);
+
+                  const renderer = new THREE.WebGLRenderer({ antialias: true });
+                  renderer.setSize(container.clientWidth, container.clientHeight);
+                  container.appendChild(renderer.domElement);
+
+                  const controls = new OrbitControls(camera, renderer.domElement);
+                  controls.enableDamping = true;
+
+                  const loader = new PCDLoader();
+                  loader.load(pcdPath, (points) => {
+                    points.geometry.center();
+                    scene.add(points);
+                  }, undefined, (error) => {
+                    console.error(`Error loading ${pcdPath}:`, error);
+                  });
+
+                  function animate() {
+                    requestAnimationFrame(animate);
+                    controls.update();
+                    renderer.render(scene, camera);
+                  }
+                  animate();
+                }
+
+                // Load two different PCD files
+                createViewer('viewer1', './assets/pointclouds/shoe1.pcd');
+                createViewer('viewer2', './assets/pointclouds/shoe2.pcd');
+                createViewer('viewer3', './assets/pointclouds/slipper.pcd');
+                createViewer('viewer4', './assets/pointclouds/sammy.pcd');
+                createViewer('viewer5', './assets/pointclouds/idol.pcd');
+            </script>
             <p> Created a simple 3D reconstruction program and builds a 3D model from multi view setup using Intel D400 series depth cameras. </p>
             <h4>Defect-Cam</h4>
             <p> Developed a custom camera that performs a 3D to 2D mapping that preserves all 360 degree viewpoints. This type of a camera has applications in fields like defect identification and quality inspection. </p>
