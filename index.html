@@ -11,16 +11,23 @@
         #viewers {
           display: flex;
           flex-direction: row;
-          width: max-content;
+          /*width: max-content;*/
+          width: 100%;
+          flex-wrap: wrap;
+          justify-content: left;
         }
 
         .viewer-container {
           display: flex;
           flex-direction: column;
           align-items: center;
-          hieght: 125px;
-          flex-shrink: 0;
+          /* height: 125px;  Remove fixed height */
           margin: 0;
+          /* allow shrinking */
+          flex-shrink: 1;
+          /* optionally add min-height if needed */
+          min-height: 125px;
+          box-sizing: border-box;
         }
 
         .label {
@@ -34,7 +41,10 @@
           width: 125px;
           height: 125px;
           border: 1px solid #ccc;
-          flex: 1;
+          flex: 1 1 125px;
+          min-width: 10px;
+          max-width: 125px;
+          box-sizing: border-box;
         }
 
         .viewer-rec {
@@ -68,8 +78,9 @@
 
         .image-box img {
           width: 250px;
-          height: 125px;
+          height: 100px;
           object-fit: contain;
+          flex: 1;
         }
   </style>
   </head>
