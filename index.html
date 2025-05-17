@@ -37,6 +37,13 @@
           flex: 1;
         }
 
+        .viewer-rec {
+          width: 200px;
+          height: 125px;
+          border: 1px solid #ccc;
+          flex: 1;
+        }
+
         body {
           margin: 0;
           padding: 20px;
@@ -60,7 +67,7 @@
         }
 
         .image-box img {
-          width: 200px;
+          width: 250px;
           height: 125px;
           object-fit: contain;
         }
@@ -163,7 +170,7 @@
             <h4>Defect-Cam</h4>
             <div id="viewers">
                 <div class="viewer-container">
-                    <div id="viewer6" class="viewer"></div>
+                    <div id="viewer6" class="viewer-rec"></div>
                     <div class="label">Input with defect</div>
                 </div>
                 <div class="viewer-container">
@@ -184,7 +191,7 @@
                   scene.background = new THREE.Color(0x111111);
 
                   const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.01, 1000);
-                  camera.position.set(0, 0, 250);
+                  camera.position.set(0, 0, 150);
 
                   const renderer = new THREE.WebGLRenderer({ antialias: true });
                   renderer.setSize(container.clientWidth, container.clientHeight);
