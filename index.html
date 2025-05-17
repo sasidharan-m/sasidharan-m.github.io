@@ -84,6 +84,32 @@
           object-fit: contain;
           flex: 1;
         }
+
+        .container {
+          display: flex;
+          align-items: center; /* vertically center */
+          gap: 5px;
+          padding: 0px;
+          max-width: 800px;
+        }
+
+        .container img {
+          height: 80px;
+          width: auto;
+          border-radius: 8px;
+        }
+
+        .text {
+          flex: 1;
+          font-size: 1rem;
+        }
+
+        @media (max-height: 80px) {
+          .container {
+            flex-direction: column;
+            text-align: center;
+          }
+        }
   </style>
   </head>
   <body>
@@ -238,18 +264,38 @@
             </script>
             <p> Developed a custom camera that performs a 3D to 2D mapping that preserves all 360 degree viewpoints. This type of a camera has applications in fields like defect identification and quality inspection. </p>
             <h4><a href="https://github.com/sasidharan-m/RayTracer">Simple Raytracer</a></h4>
+            <img src="./assets/raytracer.png" alt="Sample Output Image" height=150px />
             <p> Implemented a simple RayTracing program in C++ </p>
             <h4>Plane Sweeping Multiview Stereo Camera</h4>
             <p> Implemented a multiview stereo system using the plane sweeping algorithm </p>
         </p>
         <p>
             <h2>Software/Programs:</h2>
-            <h4><a href="https://github.com/sasidharan-m/pcl">Custom PCL port with support for Intel D400 series cameras</a></h4>
-            <p> Developed a custom port of the PCL open source library to support D400 series cameras in 2019. This work was done a part of my Master's project at UC Santa Cruz. </p>
-            <h4><a href="https://github.com/sasidharan-m/Learn-OpenGL">OpenGL Learning Resource</a></h4>
-            <p> I maintain a repo that contains example and excercise programs for the "Learn OpenGL - Graphics Programming" book. Hope beginners in OpenGL find it useful. </p>
-            <h4><a href="https://github.com/sasidharan-m/Learn-WebGL">WebGL Learning Resource</a></h4>
-            <p> I also maintain a repo for WebGL programming. This contains the example and excercise programs for the "WebGL Programming Guide: Interactive 3D Graphics Programming with WebGL" book. Hope this will help people getting started in WebGL.
+            <div class="container">
+              <img src="./assets/pcl_logo.png" alt="PCL Logo" height=80px />
+              <div class="text">
+                <h4><a href="https://github.com/sasidharan-m/pcl">Custom PCL port with support for Intel D400 series cameras</a></h4>
+                <p> Developed a custom port of the PCL open source library to support D400 series cameras in 2019. This work was done a part of my Master's project at UC Santa Cruz. </p>
+              </div>
+            </div>
+            
+            <div class="container">
+              <img src="./assets/opengl_logo.png" alt="OpenGL Logo" height=80px />
+              <div class="text">
+                <h4><a href="https://github.com/sasidharan-m/Learn-OpenGL">OpenGL Learning Resource</a></h4>
+                <p> I maintain a repo (development in progress) that contains example and excercise programs for the "Learn OpenGL - Graphics Programming" book. Hope beginners in OpenGL find it useful. </p>
+              </div>
+            </div>
+            
+            <div class="container">
+              <img src="./assets/webgl_logo.png" alt="WebGL Logo" height=80px />
+              <div class="text">
+                <h4><a href="https://github.com/sasidharan-m/Learn-WebGL">WebGL Learning Resource</a></h4>
+                <p> I also maintain a repo (development in progress) for WebGL programming. This contains the example and excercise programs for the "WebGL Programming Guide: Interactive 3D Graphics Programming with WebGL" book. Hope this will help people getting started in WebGL.
+              </div>
+            </div>
+            
+            
         </p>
         <p>
             <h2>Publications:</h2>
