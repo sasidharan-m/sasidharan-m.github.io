@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperCam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a4a4a;
+            --link-color: #1261a0;
+            --bg-color: #ffffff;
+            --secondary-bg: #f8f9fa;
+            --text-color: #3c4043;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header / Title Section */
+        header {
+            text-align: center;
+            padding: 3rem 0 1rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #202124;
+        }
+
+        .authors {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .authors a {
+            color: var(--link-color);
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .authors a:hover { text-decoration: underline; }
+
+        .affiliations {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #70757a;
+        }
+
+        .authors-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 2rem 0;
+        }
+
+        .author-block {
+            text-align: center;
+        }
+
+        .author-block .name {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .author-block .name a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .author-block .uni {
+            font-size: 0.9rem;
+            color: #70757a;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        /* Action Buttons (Paper, Code, etc.) */
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .link-btn {
+            background: #3c4043;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .link-btn:hover { background: #202124; }
+
+        /* Teaser Image/Video */
+        .teaser {
+            width: 100%;
+            margin: 2rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .teaser figure {
+            margin: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #fff; /* Ensures caption background is clean */
+        }
+
+        .teaser img {
+            width: 100%;
+            display: block;
+        }
+
+        .teaser figcaption {
+            padding: 15px 20px;
+            background: #ffffff;
+            font-size: 0.95rem;
+            color: #5f6368;
+            text-align: left;
+            border-top: 1px solid #eee; /* Subtle separation from the image */
+        }
+
+        video, img {
+            width: 100%;
+            display: block;
+        }
+
+        .gif-section {
+            background-color: #ffffff; /* Sets the entire section background to black */
+            width: 100%;
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif-container {
+            max-width: 1000px; /* Limits width on large monitors */
+            width: 90%;        /* Responsive width for mobile */
+            text-align: center;
+        }
+
+        .centered-gif {
+            width: 100%;       /* Makes GIF responsive */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px; /* Optional: subtle rounded corners */
+        }
+
+        /* Content Sections */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /*Image Comparisons*/
+        .grid-labels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #3c4043;
+            font-size: 1rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .diagonal-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .comp-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            /* Ensure the base image is the container background */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .img-base, .img-ours {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* Let clicks pass through to the slider */
+        }
+
+        .img-ours {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* A polygon that mimics the 45-degree tilt */
+            clip-path: polygon(50% 0, 100% 0, 50% 100%, 0% 100%);
+            transition: clip-path 0.05s linear;
+        }
+
+        /* The visual diagonal line handle */
+        .handle {
+            position: absolute;
+            top: -50%;     /* Extend beyond box to ensure it covers the diagonal */
+            bottom: -50%;
+            width: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 5;
+            pointer-events: none;
+            /* Create the 45-degree tilt */
+            transform: skewX(-53deg); 
+            left: 50%;
+            /* Default position for the variable */
+            --pos: 50%;
+        }
+
+        .arrow-indicator {
+            position: absolute;
+            /* We will use JS to set top and left to the same % value */
+            /* This perfectly follows a 45-degree diagonal path */
+            width: 40px;
+            height: 40px;
+            
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M10 20l6-6M10 20l6 6M30 20l-6-6M30 20l-6 6' fill='none' stroke='rgba(255%2C255%2C255%2C0.7)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            
+            /* Rotate 45deg to match the image diagonal */
+            transform: translate(-50%, -50%) rotate(45deg);
+            
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .comp-wrapper:hover .arrow-indicator {
+            opacity: 1;
+        }
+
+
+        /* The actual invisible slider */
+        .diag-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            cursor: ew-resize;
+            z-index: 10;
+            opacity: 0; /* Make it invisible but clickable */
+        }
+
+        /* Image Labels */
+        .label-base {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 8px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .label-ours {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            background: rgba(0, 120, 255, 0.7); /* Distinct blue for 'Ours' */
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .label-base { left: 10px; }
+        .label-ours { right: 10px; }
+
+        /*Downstream Tasks*/
+        .dt_handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.8); /* White for better visibility */
+            z-index: 5;
+            pointer-events: none;
+            left: 50%; /* Initial position */
+            box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        }
+
+        .vert-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            cursor: col-resize; /* Indicates horizontal movement for a vertical line */
+            z-index: 10;
+            opacity: 0; 
+        }
+
+        .dt_img-base, .dt_img-ours {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* Let clicks pass through to the slider */
+        }
+
+        .dt_img-ours {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+            /* Straight vertical cut */
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+            transition: clip-path 0.05s linear;
+        }
+
+        /* .dt_handle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -6px;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        } */
+
+        .arrow-horiz {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            z-index: 10;
+            /* Center on handle */
+            transform: translate(-50%, -50%);
+            
+            /* Default hidden until hover */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            
+            /* Horizontal arrow icon */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M10 20l6-6M10 20l6 6M30 20l-6-6M30 20l-6 6' fill='none' stroke='rgba(255%2C255%2C255%2C0.7)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: none;
+        }
+
+        /* Show on hover */
+        .comp-wrapper:hover .arrow-horiz {
+            opacity: 1;
+        }
+
+        /*Visual Results*/
+        .results-panel {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: #000000;    /* Changed to black for padding */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Spinner remains centered in the panel */
+        .spinner {
+            position: absolute;
+            top: 40%;               /* Adjusts vertical position */
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1261a0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #resultsVideo {
+            width: 100%;
+            height: auto;
+            display: block;
+            padding: 15px 0;      /* Adds the black space at the top and bottom */
+        }
+
+        .panel-caption {
+            width: 100%;
+            padding: 20px;
+            background: #ffffff;
+            text-align: center;
+            font-size: 1rem;
+            color: #4a4a4a;
+            border-top: 1px solid #eee; /* Subtle separator line */
+        }
+
+        .results-panel video {
+            width: 100%;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .panel-caption {
+            padding: 15px 20px;
+            background: #fff;
+            font-size: 0.95rem;
+            color: #5f6368;
+            text-align: center;
+        }
+
+        /* Citation Block */
+        pre {
+            background: #f1f3f4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;.teaser {
+            width: 100%;
+            margin: 2rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+         /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+        }
+}
+
+.teaser figure {
+    margin: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: #fff; /* Ensures caption background is clean */
+}
+
+.teaser img {
+    width: 100%;
+    display: block;
+}
+
+.teaser figcaption {
+    padding: 15px 20px;
+    background: #ffffff;
+    font-size: 0.95rem;
+    color: #5f6368;
+    text-align: center;
+    border-top: 1px solid #eee; /* Subtle separation from the image */
+}
+
+</style>
+<link rel="icon" type="image/png" href="assets/camera.png">
+<link rel="apple-touch-icon" href="assets/camera.png">
+</head>
+<body>
+
+<div class="container">
+    <header>
+    <h1>Computer Vision with a Superpixelation Camera</h1>
+        <div class="authors-container">
+            <div class="author-block">
+                <div class="name"><a href="https://sasidharan-m.github.io/">Sasidharan Mahalingam</a></div>
+                <div class="uni">Portland State University</div>
+            </div>
+            <div class="author-block">
+                <div class="name"><a href="https://www.rachelabrown.com/">Rachel Brown*</a></div>
+                <div class="uni">Willamette University</div>
+            </div>
+            <div class="author-block">
+                <div class="name"><a href="https://www.atulingle.com/">Atul Ingle*</a></div>
+                <div class="uni">Portland State University</div>
+            </div>
+        </div>
+        <div class="affiliations">
+            (* Joint Last Authors)
+        </div>
+
+        <div class="links">
+            <a href="#" class="link-btn">📄 Paper</a>
+            <a href="#" class="link-btn">💻 Code</a>
+            <a href="#" class="link-btn">🎥 Video</a>
+        </div>
+    </header>
+
+    <section class="gif-section">
+        <div class="gif-container">
+            <img src="assets/teaser.gif" alt="SuperCam Algorithm GIF" class="centered-gif">
+        </div>
+    </section>
+
+    <section>
+        <h2>Abstract</h2>
+        <p>
+            Conventional cameras generate a lot of data that can be challenging to process in resource-constrained applications. Usually, cameras generate data streams on the order of the number of pixels in the image. However, most of this captured data is redundant for many downstream computer vision algorithms. We propose a novel camera design, which we call SuperCam, that adaptively processes captured data by performing superpixel segmentation on the fly. We show that SuperCam performs better than current state-of-the-art superpixel algorithms under memory-constrained situations. We also compare how well SuperCam performs when the compressed data is used for downstream computer vision tasks. Our results demonstrate that the proposed design provides superior output for image segmentation, object detection, and monocular depth estimation in situations where the available memory on the camera is limited. We posit that superpixel segmentation will play a crucial role as more computer vision inference models are deployed in edge devices. SuperCam would allow computer vision engineers to design more efficient systems for these applications.
+        </p>
+    </section>
+
+    <section>
+        <h2>Superpixel Image Comparison</h2>
+        <div class="grid-labels">
+            <div>68KB</div>
+            <div>205KB</div>
+            <div>615KB</div>
+        </div>
+
+        <div class="image-grid">
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/68KB/29030_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/68KB/29030_scc.jpg" class="img-ours" id="clip1">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle1"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip1', 'handle1')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/205KB/29030_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/205KB/29030_scc.jpg" class="img-ours" id="clip2">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle2"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip2', 'handle2')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/615KB/29030_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/615KB/29030_scc.jpg" class="img-ours" id="clip3">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle3"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip3', 'handle3')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/68KB/69000_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/68KB/69000_scc.jpg" class="img-ours" id="clip4">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle4"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip4', 'handle4')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/205KB/69000_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/205KB/69000_scc.jpg" class="img-ours" id="clip5">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle5"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip5', 'handle5')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/615KB/69000_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/615KB/69000_scc.jpg" class="img-ours" id="clip6">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle6"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip6', 'handle6')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/68KB/69007_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/68KB/69007_scc.jpg" class="img-ours" id="clip7">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle7"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip7', 'handle7')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/205KB/69007_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/205KB/69007_scc.jpg" class="img-ours" id="clip8">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle8"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip8', 'handle8')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/615KB/69007_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/615KB/69007_scc.jpg" class="img-ours" id="clip9">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle9"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip9', 'handle9')">
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Computer Vision Tasks</h2>
+        <p>
+        We show the performance of SuperCam on three downstream tasks: Image Segmentation, Object Detection and Monocular Depth Estimation.
+        </p>
+        <h3>Image Segmentation</h3>
+        <p>
+            Comparison of the performance of <a href="https://ai.meta.com/research/sam2/">Segment Anything Model v2</a> on the <a href="https://github.com/BIDS/BSDS500?tab=readme-ov-file">BSD500</a> dataset</href>
+        </p>
+        <div class="grid-labels">
+            <div>68KB</div>
+            <div>205KB</div>
+            <div>615KB</div>
+        </div>
+
+        <div class="image-grid">
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/img_seg/68KB/35049_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/img_seg/68KB/35049_scc.jpg" class="dt_img-ours" id="clip10">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle10"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip10', 'handle10')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/img_seg/205KB/35049_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/img_seg/205KB/35049_scc.jpg" class="dt_img-ours" id="clip11">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle11"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip11', 'handle11')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/img_seg/615KB/35049_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/img_seg/615KB/35049_scc.jpg" class="dt_img-ours" id="clip12">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle12"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip12', 'handle12')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/img_seg/68KB/146074_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/img_seg/68KB/146074_scc.jpg" class="dt_img-ours" id="clip13">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle13"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip13', 'handle13')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/img_seg/205KB/146074_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/img_seg/205KB/146074_scc.jpg" class="dt_img-ours" id="clip14">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle14"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip14', 'handle14')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/img_seg/615KB/146074_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/img_seg/615KB/146074_scc.jpg" class="dt_img-ours" id="clip15">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle15"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip15', 'handle15')">
+            </div>
+            </div>
+        </div>
+
+        <h3>Object Detection</h3>
+        <p>
+            Comparison of the performance of <a href="https://docs.ultralytics.com/models/yolo12/">YOLOv12</a> model on the <a href="https://cocodataset.org/#home">COCO</a> dataset</href>
+        </p>
+        <div class="grid-labels">
+            <div>479KB</div>
+            <div>684KB</div>
+            <div>1025KB</div>
+        </div>
+
+        <div class="image-grid">
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/obj_det/479KB/1532_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/obj_det/479KB/1532_scc.jpg" class="dt_img-ours" id="clip16">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle16"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip16', 'handle16')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/obj_det/684KB/1532_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/obj_det/684KB/1532_scc.jpg" class="dt_img-ours" id="clip17">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle17"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip17', 'handle17')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/obj_det/1025KB/1532_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/obj_det/1025KB/1532_scc.jpg" class="dt_img-ours" id="clip18">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle18"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip18', 'handle18')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/obj_det/479KB/7816_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/obj_det/479KB/7816_scc.jpg" class="dt_img-ours" id="clip19">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle19"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip19', 'handle19')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/obj_det/684KB/7816_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/obj_det/684KB/7816_scc.jpg" class="dt_img-ours" id="clip20">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle20"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip20', 'handle20')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/obj_det/1025KB/7816_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/obj_det/1025KB/7816_scc.jpg" class="dt_img-ours" id="clip21">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle21"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip21', 'handle21')">
+            </div>
+            </div>
+        </div>
+
+        <h3>Monocular Depth Estimation</h3>
+        <p>
+            Comparison of the performance of <a href="https://github.com/DepthAnything/Depth-Anything-V2">Depth Anything v2</a> model on the <a href="https://diode-dataset.org/">DIODE</a> dataset</href>
+        </p>
+        <div class="grid-labels">
+            <div>410KB</div>
+            <div>547KB</div>
+            <div>684KB</div>
+        </div>
+
+        <div class="image-grid">
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/mono_dep/410KB/00022_00196_outdoor_020_030_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/mono_dep/410KB/00022_00196_outdoor_020_030_scc.jpg" class="dt_img-ours" id="clip22">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle22"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip22', 'handle22')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/mono_dep/547KB/00022_00196_outdoor_020_030_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/mono_dep/547KB/00022_00196_outdoor_020_030_scc.jpg" class="dt_img-ours" id="clip23">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle23"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip23', 'handle23')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/mono_dep/684KB/00022_00196_outdoor_020_030_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/mono_dep/684KB/00022_00196_outdoor_020_030_scc.jpg" class="dt_img-ours" id="clip24">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle24"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip24', 'handle24')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/mono_dep/410KB/00024_00202_outdoor_180_030_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/mono_dep/410KB/00024_00202_outdoor_180_030_scc.jpg" class="dt_img-ours" id="clip25">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle25"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip25', 'handle25')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/mono_dep/547KB/00024_00202_outdoor_180_030_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/mono_dep/547KB/00024_00202_outdoor_180_030_scc.jpg" class="dt_img-ours" id="clip26">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle26"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip26', 'handle26')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/mono_dep/684KB/00024_00202_outdoor_180_030_snic.jpg" class="dt_img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/mono_dep/684KB/00024_00202_outdoor_180_030_scc.jpg" class="dt_img-ours" id="clip27">
+                <span class="label-ours">SuperCam</span>
+                <div class="dt_handle" id="handle27"></div>
+                <div class="arrow-horiz"></div>
+                <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip27', 'handle27')">
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Hardware Emulation Results</h2>
+            <div class="results-panel" id="videoContainer">
+                <div class="spinner" id="loadingSpinner"></div>
+                <video id="resultsVideo" autoplay muted loop playsinline preload="auto" width="100%">
+                    <source src="assets/demo_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="panel-caption">
+                    <p><strong>Figure:</strong> Hardware Emulation results of SuperCam</p>
+        </div>
+    </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>BibTeX</h2>
+        <pre><code>@article{cvpr2026supercam,
+        title={Computer Vision with a Superpixelation Camera},
+        author={Mahalingam, Sasidharan and Brown, Rachel and Ingle, Atul},
+        journal={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+        year={2026}
+}</code></pre>
+    </section>
+
+    <footer style="text-align: center; padding: 2rem; color: #70757a; font-size: 0.8rem;">
+        <p>&copy; 2026 by Sasidharan Mahalingam.</p>
+    </footer>
+</div>
+
+<script>
+    // Optional: Dynamic interaction like pausing videos when out of view
+    const videos = document.querySelectorAll('video');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                entry.target.pause();
+            } else {
+                entry.target.play();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    videos.forEach(v => observer.observe(v));
+</script>
+<script src="script.js"></script>
+</body>
+</html>
