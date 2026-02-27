@@ -473,6 +473,36 @@
             text-align: center;
         }
 
+        /* FAQ BLock */
+        .faq-section {
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .faq-section h2 {
+            border-bottom: 2px solid var(--text-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .faq-answer {
+            line-height: 1.5;
+            color: #555;
+        }
+
         /* Citation Block */
         pre {
             background: #f1f3f4;
@@ -676,6 +706,78 @@
                 <div class="handle" id="handle9"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip9', 'handle9')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/68KB/168084_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/68KB/168084_scc.jpg" class="img-ours" id="clip28">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle28"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip28', 'handle28')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/205KB/168084_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/205KB/168084_scc.jpg" class="img-ours" id="clip29">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle29"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip29', 'handle29')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/615KB/168084_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/615KB/168084_scc.jpg" class="img-ours" id="clip30">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle30"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip30', 'handle30')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/68KB/226022_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/68KB/226022_scc.jpg" class="img-ours" id="clip31">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle31"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip31', 'handle31')">
+            </div>
+            </div>
+        
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/205KB/226022_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/205KB/226022_scc.jpg" class="img-ours" id="clip32">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle32"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip32', 'handle32')">
+            </div>
+            </div>
+
+            <div class="diagonal-box">
+            <div class="comp-wrapper">
+                <img src="assets/615KB/226022_snic.jpg" class="img-base">
+                <span class="label-base">SNIC</span>
+                <img src="assets/615KB/226022_scc.jpg" class="img-ours" id="clip33">
+                <span class="label-ours">SuperCam</span>
+                <div class="handle" id="handle33"></div>
+                <div class="arrow-indicator"></div>
+                <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip33', 'handle33')">
             </div>
             </div>
         </div>
@@ -952,7 +1054,60 @@
                     <p><strong>Figure:</strong> Hardware Emulation results of SuperCam</p>
         </div>
     </div>
+    </section>
+
+    <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <div class="faq-question">What are superpixels?</div>
+        <div class="faq-answer">
+            Superpixels are groups of connected pixels that share similar characteristics, such as color, brightness, or texture. Instead of treating an image as a rigid grid of thousands of individual pixels, superpixel algorithms "cluster" pixels into larger, irregularly shaped segments that align with the natural boundaries and structures in a scene.
         </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Why use superpixels?</div>
+        <div class="faq-answer">
+            In traditional imaging, cameras capture a rigid grid of pixels regardless of the scene's complexity. Superpixels offer a more "content-aware" alternative by grouping pixels into meaningful clusters. Using them provides three primary advantages:
+            <br><br>
+            <b>Computational Efficiency:</b> Processing an image as a few hundred superpixels instead of millions of individual pixels drastically reduces the "search space" for algorithms like object tracking or depth estimation.
+            <br>
+            <b>Feature Preservation:</b> Unlike standard downsampling (which blurs edges), superpixels are boundary-aware. They conform to the shapes of objects in a scene, preserving high-frequency details like edges and contours that are often lost in low-resolution grids.
+            <br>
+            <b>Reduced Redundancy:</b> In most natural scenes, neighboring pixels carry nearly identical information (e.g., a blue sky or a white wall). Superpixels represent these uniform areas as a single unit, allowing the camera or processor to focus its "attention" only where the scene actually changes.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">What is a Superpixelation Camera?</div>
+        <div class="faq-answer">
+        A <strong>Superpixelation Camera</strong> is a novel imaging system that integrates 
+        the concept of "superpixels" directly into the image acquisition hardware. 
+        Instead of capturing light on a rigid grid, it adaptively groups sensing elements 
+        to match the natural boundaries of the scene, allowing for more efficient 
+        and content-aware data capture.
+        </div>
+    </div>
+    </section>
+
+    <div class="faq-item">
+        <div class="faq-question">What applications does this technology enable?</div>
+        <div class="faq-answer">
+            This technology is designed for <strong>resource-constrained environments</strong>, 
+            enabling high-performance computer vision on hardware with limited power, memory or 
+            bandwidth. Primary applications include autonomous drone navigation, Edge-AI 
+            surveillance, high-speed industrial tracking, and remote sensing where 
+            data efficiency is critical.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Can I use this code for commercial purposes?</div>
+        <div class="faq-answer">
+            The code is licensed under the MIT License, which allows for commercial use. However, we kindly request that you cite our CVPR 2026 paper in any resulting products or publications.
+        </div>
+    </div>
     </section>
 
     <section>
@@ -964,6 +1119,8 @@
         year={2026}
 }</code></pre>
     </section>
+
+    </div>
 
     <footer style="text-align: center; padding: 2rem; color: #70757a; font-size: 0.8rem;">
         <p>&copy; 2026 by Sasidharan Mahalingam.</p>
