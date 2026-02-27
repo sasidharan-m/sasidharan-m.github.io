@@ -573,15 +573,15 @@
         </div>
 
         <div class="links">
-            <a href="#" class="link-btn">📄 Paper</a>
-            <a href="#" class="link-btn">💻 Code</a>
-            <a href="#" class="link-btn">🎥 Video</a>
+            <a href="#" class="link-btn">📄 Paper [Coming Soon]</a>
+            <a href="#" class="link-btn">💻 Code [Coming Soon]</a>
+            <a href="#" class="link-btn">🎥 Video [Coming Soon]</a>
         </div>
     </header>
 
     <section class="gif-section">
         <div class="gif-container">
-            <img src="assets/teaser.gif" alt="SuperCam Algorithm GIF" class="centered-gif">
+            <img src="assets/teaser.png" alt="SuperCam Algorithm GIF" class="centered-gif">
         </div>
     </section>
 
@@ -594,6 +594,7 @@
 
     <section>
         <h2>Superpixel Image Comparison</h2>
+        <p>We compare memory resitricted <a href="https://github.com/achanta/SNIC">SNIC</a> (we artificially reduce the image resolution to fit the algorithm into the various memory budgets shown) to SuperCam images using the same amount of memory. Below are results for three chosen memory budgets 68KB, 205KB and 615KB.</p>
         <div class="grid-labels">
             <div>68KB</div>
             <div>205KB</div>
@@ -1092,26 +1093,40 @@
     </section>
 
     <div class="faq-item">
+        <div class="faq-question">How is SuperCam different from traditional superpixel methods like SNIC?</div>
+        <div class="faq-answer">
+            Traditional superpixel algorithms need access to the entire image to generate the superpixel image. So a imaging system using such algorithms has to first capture the image and then process it to generate the final superpixel image. Our proposed <strong>SuperCam</strong> design however, generates the superpixel image, on the fly, at the level of the sensor. This results in lower compute, memory and bandwidth requirements to generate a superpixel image.
+        </div>
+    </div>
+
+    <div class="faq-item">
         <div class="faq-question">What applications does this technology enable?</div>
         <div class="faq-answer">
             This technology is designed for <strong>resource-constrained environments</strong>, 
             enabling high-performance computer vision on hardware with limited power, memory or 
             bandwidth. Primary applications include autonomous drone navigation, Edge-AI 
             surveillance, high-speed industrial tracking, and remote sensing where 
-            data efficiency is critical.
+            data efficiency is critical. Another potential application is <strong>privacy aware imaging</strong>. As SuperCam does not capture the acutal high-fidelity image, it is inherently privacy preserving.
         </div>
     </div>
 
     <div class="faq-item">
+        <div class="faq-question">What are the limitations of this technology?</div>
+        <div class="faq-answer">
+            The main limitation for the proposed camera design is poor performance if the objects of interest are comparable to or smaller than the size of the superpixels. The features of the object are permanently lost during capture which results in below-par performance.
+        </div>
+    </div>
+    
+    <div class="faq-item">
         <div class="faq-question">Can I use this code for commercial purposes?</div>
         <div class="faq-answer">
-            The code is licensed under the MIT License, which allows for commercial use. However, we kindly request that you cite our CVPR 2026 paper in any resulting products or publications.
+            The code is licensed under the MIT License, which allows for commercial use. However, we are patent pending and we kindly request that you cite our CVPR 2026 paper and contact the authors for relicensing in any resulting products or publications.
         </div>
     </div>
     </section>
 
     <section>
-        <h2>BibTeX</h2>
+        <h2>BibTeX [accepted, to appear]</h2>
         <pre><code>@article{cvpr2026supercam,
         title={Computer Vision with a Superpixelation Camera},
         author={Mahalingam, Sasidharan and Brown, Rachel and Ingle, Atul},
