@@ -591,9 +591,13 @@
 
     <section class="gif-section">
         <div class="gif-container">
-            <img src="assets/teaser.png" alt="SuperCam Algorithm GIF" class="centered-gif">
+            <img src="assets/teaser_updated.png" alt="SuperCam Teaser Image" class="centered-gif">
             <div class="gif-caption">
-                <p><strong>SuperCam Algorithm:</strong> We show a high level overview of the algorithm of SuperCam. <br> The top row shows how the ouput superpixel image is built on the fly. <br> The bottom row shows how the output superpixel image looks at different stages of the algorithm.</p>
+                <p><strong>Summary of SuperCam design, output and applications:</strong> <br> 
+                    <b>(a) SuperCam Conceptual Design:</b> <br>The proposed design, which is implemented as a passive Single Photon Avalanche Diode (SPAD) Sensor. We adaptively sample the exposed pixels to generate a sparse superpixel image.<br>
+                    <b>(b) Superpixel Image Comparison:</b> <br>As SuperCam generates the superpixel image from sparse data on the fly, it performs better than the conventional superpixel algorithms under resource constrained scenarios. Shown are sample images with different memory settings; 68KB, 205KB and 615KB. <br>
+                    <b>(c) Applications:</b> <br>Three computer vision applications comparing SuperCam with a memory-constrained implementation of <a href="https://github.com/achanta/SNIC">SNIC</a> Image Segmentation using <a href="https://github.com/facebookresearch/sam2">SAMv2</a>, Object Detection using <a href="https://github.com/sunsmarterjie/yolov12">YOLOv12</a> and Monocular Depth Estimation using <a href="https://github.com/DepthAnything/Depth-Anything-V2">DepthAnythingV2</a>.
+                </p>
             </div>
         </div>
     </section>
