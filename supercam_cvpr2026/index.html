@@ -119,14 +119,18 @@
         .teaser {
             width: 100%;
             margin: 2rem 0;
-            max-width: 900px;
+            max-width: 1920px;
             margin-left: auto;
             margin-right: auto;
+            align-items: center;
         }
 
         .teaser figure {
             margin: 0;
-            border-radius: 8px;
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 100%;
+            border:none;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             background: #fff; /* Ensures caption background is clean */
@@ -142,7 +146,7 @@
             background: #ffffff;
             font-size: 0.95rem;
             color: #5f6368;
-            text-align: left;
+            text-align: center;
             border-top: 1px solid #eee; /* Subtle separation from the image */
         }
 
@@ -154,21 +158,21 @@
         .gif-section {
             background-color: #ffffff; /* Sets the entire section background to black */
             width: 100%;
-            padding: 40px 0;
+            padding: 0px 0;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .gif-container {
-            max-width: 1000px; /* Limits width on large monitors */
+            max-width: 1920px; /* Limits width on large monitors */
             width: 90%;        /* Responsive width for mobile */
             text-align: center;
         }
 
         .gif-caption {
             width: 100%;
-            padding: 20px;
+            padding: 0px;
             background: #ffffff;
             text-align: center;
             font-size: 1rem;
@@ -180,7 +184,7 @@
             width: 100%;       /* Makes GIF responsive */
             height: auto;
             display: block;
-            margin: 0 auto;
+            margin: 0;
             border-radius: 4px; /* Optional: subtle rounded corners */
         }
 
@@ -473,7 +477,6 @@
             overflow-wrap: break-word;
             white-space: normal;
             overflow: visible;
-            padding-inline-end: 10px;
             display: block;
             box-sizing: border-box;
         }
