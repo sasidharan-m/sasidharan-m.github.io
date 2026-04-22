@@ -425,6 +425,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
+            min-width: 0;
             max-width: 1000px;
             margin: 2rem auto;
             background: #000000;    /* Changed to black for padding */
@@ -460,8 +461,8 @@
         }
 
         .panel-caption {
-            width: 96%;
-            max-width: 96%;
+            width: 100%;
+            max-width: 100%;
             padding: 20px;
             background: #ffffff;
             text-align: center;
@@ -471,6 +472,10 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             white-space: normal;
+            overflow: visible;
+            padding-inline-end: 10px;
+            display: block;
+            box-sizing: border-box;
         }
 
         .results-panel video {
