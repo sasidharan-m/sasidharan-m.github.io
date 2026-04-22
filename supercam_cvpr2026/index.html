@@ -210,7 +210,7 @@
 
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
 
@@ -608,19 +608,19 @@
     <section>
         <h2>Superpixel Image Comparison</h2>
         <p>We compare memory restricted <a href="https://github.com/achanta/SNIC">SNIC</a> (we artificially reduce the image resolution to fit the algorithm into the various memory budgets shown) to SuperCam images using the same amount of memory. Below are results for three chosen memory budgets 68KB, 205KB and 615KB.</p>
-        <div class="grid-labels">
+        <!-- <div class="grid-labels">
             <div>68KB</div>
             <div>205KB</div>
             <div>615KB</div>
-        </div>
+        </div> -->
 
         <div class="image-grid">
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/68KB/29030_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 68KB</span>
                 <img src="assets/68KB/29030_scc.jpg" class="img-ours" id="clip1">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 68KB</span>
                 <div class="handle" id="handle1"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip1', 'handle1')">
@@ -630,9 +630,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/205KB/29030_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 205KB</span>
                 <img src="assets/205KB/29030_scc.jpg" class="img-ours" id="clip2">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 205KB</span>
                 <div class="handle" id="handle2"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip2', 'handle2')">
@@ -642,9 +642,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/615KB/29030_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 615KB</span>
                 <img src="assets/615KB/29030_scc.jpg" class="img-ours" id="clip3">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 615KB</span>
                 <div class="handle" id="handle3"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip3', 'handle3')">
@@ -654,9 +654,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/68KB/69000_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 68KB</span>
                 <img src="assets/68KB/69000_scc.jpg" class="img-ours" id="clip4">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 68KB</span>
                 <div class="handle" id="handle4"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip4', 'handle4')">
@@ -666,9 +666,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/205KB/69000_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 205KB</span>
                 <img src="assets/205KB/69000_scc.jpg" class="img-ours" id="clip5">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 205KB</span>
                 <div class="handle" id="handle5"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip5', 'handle5')">
@@ -678,9 +678,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/615KB/69000_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 615KB</span>
                 <img src="assets/615KB/69000_scc.jpg" class="img-ours" id="clip6">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 615KB</span>
                 <div class="handle" id="handle6"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip6', 'handle6')">
@@ -690,9 +690,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/68KB/69007_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 68KB</span>
                 <img src="assets/68KB/69007_scc.jpg" class="img-ours" id="clip7">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 68KB</span>
                 <div class="handle" id="handle7"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip7', 'handle7')">
@@ -702,9 +702,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/205KB/69007_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 205KB</span>
                 <img src="assets/205KB/69007_scc.jpg" class="img-ours" id="clip8">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 205KB</span>
                 <div class="handle" id="handle8"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip8', 'handle8')">
@@ -714,9 +714,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/615KB/69007_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 615KB</span>
                 <img src="assets/615KB/69007_scc.jpg" class="img-ours" id="clip9">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 615KB</span>
                 <div class="handle" id="handle9"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip9', 'handle9')">
@@ -726,9 +726,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/68KB/168084_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 68KB</span>
                 <img src="assets/68KB/168084_scc.jpg" class="img-ours" id="clip28">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 68KB</span>
                 <div class="handle" id="handle28"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip28', 'handle28')">
@@ -738,9 +738,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/205KB/168084_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 205KB</span>
                 <img src="assets/205KB/168084_scc.jpg" class="img-ours" id="clip29">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 205KB</span>
                 <div class="handle" id="handle29"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip29', 'handle29')">
@@ -750,9 +750,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/615KB/168084_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 615KB</span>
                 <img src="assets/615KB/168084_scc.jpg" class="img-ours" id="clip30">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 615KB</span>
                 <div class="handle" id="handle30"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip30', 'handle30')">
@@ -762,9 +762,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/68KB/226022_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 68KB</span>
                 <img src="assets/68KB/226022_scc.jpg" class="img-ours" id="clip31">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 68KB</span>
                 <div class="handle" id="handle31"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip31', 'handle31')">
@@ -774,9 +774,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/205KB/226022_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 205KB</span>
                 <img src="assets/205KB/226022_scc.jpg" class="img-ours" id="clip32">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 205KB</span>
                 <div class="handle" id="handle32"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip32', 'handle32')">
@@ -786,9 +786,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/615KB/226022_snic.jpg" class="img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 615KB</span>
                 <img src="assets/615KB/226022_scc.jpg" class="img-ours" id="clip33">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 615KB</span>
                 <div class="handle" id="handle33"></div>
                 <div class="arrow-indicator"></div>
                 <input type="range" min="-35" max="135" value="50" class="diag-slider" oninput="updateDiag(this, 'clip33', 'handle33')">
@@ -806,19 +806,19 @@
         <p>
             Comparison of the performance of <a href="https://ai.meta.com/research/sam2/">Segment Anything Model v2</a> on the <a href="https://github.com/BIDS/BSDS500?tab=readme-ov-file">BSD500</a> dataset</href>
         </p>
-        <div class="grid-labels">
+        <!-- <div class="grid-labels">
             <div>68KB</div>
             <div>205KB</div>
             <div>615KB</div>
-        </div>
+        </div> -->
 
         <div class="image-grid">
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/img_seg/68KB/35049_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 68KB</span>
                 <img src="assets/img_seg/68KB/35049_scc.jpg" class="dt_img-ours" id="clip10">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 68KB</span>
                 <div class="dt_handle" id="handle10"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip10', 'handle10')">
@@ -828,9 +828,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/img_seg/205KB/35049_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 205KB</span>
                 <img src="assets/img_seg/205KB/35049_scc.jpg" class="dt_img-ours" id="clip11">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 205KB</span>
                 <div class="dt_handle" id="handle11"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip11', 'handle11')">
@@ -840,9 +840,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/img_seg/615KB/35049_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 615KB</span>
                 <img src="assets/img_seg/615KB/35049_scc.jpg" class="dt_img-ours" id="clip12">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 615KB</span>
                 <div class="dt_handle" id="handle12"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip12', 'handle12')">
@@ -852,9 +852,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/img_seg/68KB/146074_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 68KB</span>
                 <img src="assets/img_seg/68KB/146074_scc.jpg" class="dt_img-ours" id="clip13">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 68KB</span>
                 <div class="dt_handle" id="handle13"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip13', 'handle13')">
@@ -864,9 +864,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/img_seg/205KB/146074_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 205KB</span>
                 <img src="assets/img_seg/205KB/146074_scc.jpg" class="dt_img-ours" id="clip14">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 205KB</span>
                 <div class="dt_handle" id="handle14"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip14', 'handle14')">
@@ -876,9 +876,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/img_seg/615KB/146074_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 615KB</span>
                 <img src="assets/img_seg/615KB/146074_scc.jpg" class="dt_img-ours" id="clip15">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 615KB</span>
                 <div class="dt_handle" id="handle15"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip15', 'handle15')">
@@ -890,19 +890,19 @@
         <p>
             Comparison of the performance of <a href="https://docs.ultralytics.com/models/yolo12/">YOLOv12</a> model on the <a href="https://cocodataset.org/#home">COCO</a> dataset</href>
         </p>
-        <div class="grid-labels">
+        <!-- <div class="grid-labels">
             <div>479KB</div>
             <div>684KB</div>
             <div>1025KB</div>
-        </div>
+        </div> -->
 
         <div class="image-grid">
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/obj_det/479KB/1532_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 479KB</span>
                 <img src="assets/obj_det/479KB/1532_scc.jpg" class="dt_img-ours" id="clip16">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 479KB</span>
                 <div class="dt_handle" id="handle16"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip16', 'handle16')">
@@ -912,9 +912,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/obj_det/684KB/1532_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 684KB</span>
                 <img src="assets/obj_det/684KB/1532_scc.jpg" class="dt_img-ours" id="clip17">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 684KB</span>
                 <div class="dt_handle" id="handle17"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip17', 'handle17')">
@@ -924,9 +924,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/obj_det/1025KB/1532_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 1025KB</span>
                 <img src="assets/obj_det/1025KB/1532_scc.jpg" class="dt_img-ours" id="clip18">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 1025KB</span>
                 <div class="dt_handle" id="handle18"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip18', 'handle18')">
@@ -936,9 +936,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/obj_det/479KB/7816_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 479KB</span>
                 <img src="assets/obj_det/479KB/7816_scc.jpg" class="dt_img-ours" id="clip19">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 479KB</span>
                 <div class="dt_handle" id="handle19"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip19', 'handle19')">
@@ -948,9 +948,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/obj_det/684KB/7816_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 684KB</span>
                 <img src="assets/obj_det/684KB/7816_scc.jpg" class="dt_img-ours" id="clip20">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 684KB</span>
                 <div class="dt_handle" id="handle20"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip20', 'handle20')">
@@ -960,9 +960,9 @@
             <div class="diagonal-box">
             <div class="comp-wrapper">
                 <img src="assets/obj_det/1025KB/7816_snic.jpg" class="dt_img-base">
-                <span class="label-base">Restricted SNIC</span>
+                <span class="label-base">Restricted SNIC - 1025KB</span>
                 <img src="assets/obj_det/1025KB/7816_scc.jpg" class="dt_img-ours" id="clip21">
-                <span class="label-ours">SuperCam</span>
+                <span class="label-ours">SuperCam - 1025KB</span>
                 <div class="dt_handle" id="handle21"></div>
                 <div class="arrow-horiz"></div>
                 <input type="range" min="0" max="100" value="50" class="vert-slider" oninput="updateVert(this, 'clip21', 'handle21')">
